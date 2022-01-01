@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:MvxContentPage x:TypeArguments="viewModels:HomeViewModel"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+    xmlns:mvx="clr-namespace:MvvmCross.Forms.Bindings;assembly=MvvmCross.Forms"
+    xmlns:local="clr-namespace:MyXamarinFormsAppX.UI.Pages"
+    x:Class="MyXamarinFormsAppX.UI.Pages.HomePage"
+    xmlns:viewModels="clr-namespace:MyXamarinFormsAppX.Core.ViewModels.Home;assembly=MyXamarinFormsAppX.Core"
+                      Title="Main page">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label 
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand"
+                    mvx:Bi.nd="Text LoginStatus" />
+            <Button Text=" sign in google"
+                     VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" 
+             Command="{mvx:MvxBind SignInGoogleCommand}"
+                            />
+        </StackLayout>
+    </ContentPage.Content>
+</views:MvxContentPage>
