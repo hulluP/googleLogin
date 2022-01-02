@@ -24,6 +24,7 @@ namespace MyXamarinFormsAppX.Core.ViewModels.Home
         }
 
         private IFirebaseAuthenticator DaFireBaseAuth;
+        private FirebaseUser DaUser;
 
         public HomeViewModel()
         {
@@ -48,10 +49,15 @@ namespace MyXamarinFormsAppX.Core.ViewModels.Home
 
         private async Task CheckStatusAsync()
         {
-            FirebaseUser user = await DaFireBaseAuth.GetUserInfo();
-            if (user != null)
+            if (DaUser == null)
             {
-                LoginStatus = user.DisplayName + " is logged in";
+                DaUser = await DaFireBaseAuth.GetUserInfo();
+                if (DaUser == null)
+                {
+                    DaUser = new FirebaseUser();
+                    DaUser.DisplayName = "nobody";
+                }
+                LoginStatus = DaUser.DisplayName + " is logged in";
             }
         }
     }

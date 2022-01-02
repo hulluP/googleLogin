@@ -122,6 +122,23 @@ namespace MyXamarinFormsAppX.iOS
                 GoogleLogonTask?.SetException(new NSErrorException(error));
             }
         }
+        [Export("signInWillDispatch:error:")]
+        public void WillDispatch(SignIn signIn, NSError error)
+        {
+            //myActivityIndicator.StopAnimating();
+        }
+
+        [Export("signIn:presentViewController:")]
+        public void PresentViewController(SignIn signIn, UIViewController viewController)
+        {
+            DaViewController?.PresentViewController(viewController, true, null);
+        }
+
+        [Export("signIn:dismissViewController:")]
+        public void DismissViewController(SignIn signIn, UIViewController viewController)
+        {
+            DaViewController?.DismissViewController(true, null);
+        }
 
         public void SignOut()
         {

@@ -17,11 +17,16 @@ namespace MyXamarinFormsAppX.iOS
 
             return base.FinishedLaunching(application, launchOptions);
         }
-        // For iOS 9 or newer
         public override bool OpenUrl(UIApplication app, NSUrl url, NSDictionary options)
         {
             var openUrlOptions = new UIApplicationOpenUrlOptions(options);
-            return SignIn.SharedInstance.HandleUrl(url);
+            return SignIn.SharedInstance.HandleUrl(url, openUrlOptions.SourceApplication, openUrlOptions.Annotation);
+        }
+
+        // For iOS 8 and older
+        public override bool OpenUrl(UIApplication application, NSUrl url, string sourceApplication, NSObject annotation)
+        {
+            return SignIn.SharedInstance.HandleUrl(url, sourceApplication, annotation);
         }
     }
 }
